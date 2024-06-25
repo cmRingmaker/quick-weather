@@ -8,6 +8,8 @@
 :root {
 	font-size: 62.5%; /* [1] */
 
+	color-scheme: light dark;
+
 	/* -----------> DEFAULT DARK MODE COLORS!!!! <------------ */
 	/* Main colors */
 	--COLOR_BG: hsl(0, 5%, 10%);

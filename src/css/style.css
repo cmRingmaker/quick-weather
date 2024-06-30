@@ -18,6 +18,19 @@
 
 	/* Text */
 	--FONT_COLOR: light-dark(hsl(0, 5%, 10%), hsl(30, 100%, 98%));
+
+	/* Color Scheme Switcher */
+	&:has(input[name='color-scheme'][value='light dark']:checked) {
+		color-scheme: light dark;
+	}
+
+	&:has(input[name='color-scheme'][value='light']:checked) {
+		color-scheme: light;
+	}
+
+	&:has(input[name='color-scheme'][value='dark']:checked) {
+		color-scheme: dark;
+	}
 }
 
 /* ==================================================================

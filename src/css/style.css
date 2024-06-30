@@ -12,12 +12,12 @@
 
 	/* -----------> DEFAULT DARK MODE COLORS!!!! <------------ */
 	/* Main colors */
-	--COLOR_BG: hsl(0, 5%, 10%);
+	--COLOR_BG: light-dark(hsl(30, 100%, 98%), hsl(0, 5%, 10%));
 	--COLOR_PRIMARY: hsl(220, 90%, 15%);
 	--COLOR_SECONDARY: hsl(303, 71%, 73%);
 
 	/* Text */
-	--FONT_COLOR: hsl(30, 100%, 98%);
+	--FONT_COLOR: light-dark(hsl(0, 5%, 10%), hsl(30, 100%, 98%));
 }
 
 /* ==================================================================

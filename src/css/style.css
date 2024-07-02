@@ -6,32 +6,28 @@
    ================================================================== */
 
 :root {
+	color-scheme: light dark;
 	font-size: 62.5%; /* [1] */
 
-	color-scheme: light dark;
+	/* Dark Mode Colors */
+	--bg_dark: hsl(0, 5%, 10%);
 
-	--BG_DARK: hsl(0, 5%, 10%);
-	--BG_LIGHT: hsl(45, 40%, 94%);
+	/* Light Mode Colors */
+	--bg_light: hsl(45, 40%, 94%);
 
-	/* -----------> DEFAULT DARK MODE COLORS!!!! <------------ */
 	/* Main colors */
-	--COLOR_BG: light-dark(var(--BG_LIGHT), var(--BG_DARK));
+	--COLOR_BG: light-dark(var(--bg_light), var(--bg_dark));
 	--COLOR_PRIMARY: hsl(220, 90%, 15%);
 	--COLOR_SECONDARY: hsl(303, 71%, 73%);
 
 	/* Text */
 	--FONT_COLOR: light-dark(hsl(0, 5%, 10%), hsl(30, 100%, 98%));
 
-	/* Color Scheme Switcher */
-	&:has(input[name='color-scheme'][value='light dark']:checked) {
-		color-scheme: light dark;
-	}
-
-	&:has(input[name='color-scheme'][value='light']:checked) {
+	&:has(#theme-toggle:not(:checked)) {
 		color-scheme: light;
 	}
 
-	&:has(input[name='color-scheme'][value='dark']:checked) {
+	&:has(#theme-toggle:checked) {
 		color-scheme: dark;
 	}
 }
@@ -68,9 +64,9 @@ header {
 	background-color: var(--COLOR_PRIMARY);
 }
 
-button {
+/* button {
 	width: 100px;
-	/* background-color: white; */
+	background-color: white;
 	padding: 4px 0;
 	align-self: flex-end;
 	margin: 10px 20px 0 0;
@@ -84,9 +80,9 @@ button {
 label[for='theme-toggle'] {
 	align-self: flex-end;
 	width: 70px;
-	/* height: 60px; */
+	height: 60px;
 	padding: 8px 0;
-	/* background-color: red; */
+	background-color: red;
 	text-align: center;
 	border-bottom-left-radius: 12px;
 	align-items: center;
@@ -95,13 +91,56 @@ label[for='theme-toggle'] {
 .sun,
 .moon {
 	display: none;
-}
+} */
 
 svg {
 	/* height: 36px;
 	width: 36px;
 	fill: white; */
 }
+
+/* #theme-switcher {
+	background-color: var(--THEME_SWITCHER);
+	width: 90px;
+	padding: 4px 0;
+	border-radius: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	cursor: pointer;
+
+	svg {
+		width: 34px;
+		height: 34px;
+		stroke-width: 1.5;
+		stroke: var(--THEME_BUTTON_COLOR);
+		fill: none;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		z-index: 1;
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		width: 36px;
+		height: 36px;
+		background-color: rgb(255, 123, 0);
+		border-radius: 50%;
+		z-index: 0;
+		left: 0;
+		transform: translateX(8px) translateY(0);
+	}
+} */
+
+/* .theme-icon {
+	stroke-width: 1.5;
+	stroke: var(--THEME_BUTTON_COLOR);
+	fill: none;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+} */
 
 /* ==================================================================
     - - - - - - - - - - [ %CONTENT ]

@@ -2,8 +2,8 @@
 // IMPORT
 import '../css/style.css'
 import '../css/reset.css'
-import WEATHER from './weather'
-import THEME from './theme-toggle'
+import WEATHER from './weather.js'
+import THEME from './theme.js'
 
 // -------------------------
 // DOM ELEMENTS

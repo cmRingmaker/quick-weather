@@ -10,9 +10,12 @@
 
 	color-scheme: light dark;
 
+	--BG_DARK: hsl(0, 5%, 10%);
+	--BG_LIGHT: hsl(45, 40%, 94%);
+
 	/* -----------> DEFAULT DARK MODE COLORS!!!! <------------ */
 	/* Main colors */
-	--COLOR_BG: light-dark(hsl(30, 100%, 98%), hsl(0, 5%, 10%));
+	--COLOR_BG: light-dark(var(--BG_LIGHT), var(--BG_DARK));
 	--COLOR_PRIMARY: hsl(220, 90%, 15%);
 	--COLOR_SECONDARY: hsl(303, 71%, 73%);
 
@@ -65,6 +68,41 @@ header {
 	background-color: var(--COLOR_PRIMARY);
 }
 
+button {
+	width: 100px;
+	/* background-color: white; */
+	padding: 4px 0;
+	align-self: flex-end;
+	margin: 10px 20px 0 0;
+}
+
+#theme-toggle {
+	align-self: flex-end;
+	display: none;
+}
+
+label[for='theme-toggle'] {
+	align-self: flex-end;
+	width: 70px;
+	/* height: 60px; */
+	padding: 8px 0;
+	/* background-color: red; */
+	text-align: center;
+	border-bottom-left-radius: 12px;
+	align-items: center;
+}
+
+.sun,
+.moon {
+	display: none;
+}
+
+svg {
+	/* height: 36px;
+	width: 36px;
+	fill: white; */
+}
+
 /* ==================================================================
     - - - - - - - - - - [ %CONTENT ]
    ==================================================================
@@ -74,12 +112,6 @@ header {
 
 main {
 	align-self: center;
-	display: grid;
-	grid-template-columns: repeat(6, 1fr);
-	grid-template-rows: 20px repeat(6, 1fr) 20px;
-	gap: 10px;
-	height: 100%;
-	/* max-width: 1200px; */
 }
 
 /* ==================================================================

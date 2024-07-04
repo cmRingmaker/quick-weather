@@ -21,9 +21,9 @@
 	--COLOR_SECONDARY: hsl(303, 71%, 73%);
 
 	/* Text */
-	--FONT_COLOR: light-dark(hsl(0, 5%, 10%), hsl(30, 100%, 98%));
+	--FONT_COLOR: light-dark(hsl(0, 6%, 10%), hsl(30, 100%, 98%));
 
-	&:has(#theme-toggle:not(:checked)) {
+	&:has(#theme-toggle:not(:checked):not(:indeterminate)) {
 		color-scheme: light;
 	}
 

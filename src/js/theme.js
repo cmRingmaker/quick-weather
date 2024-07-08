@@ -1,5 +1,6 @@
 const themeToggle = document.getElementById('theme-toggle')
 const savedTheme = localStorage.getItem('theme')
+const themeText = document.getElementById('theme-text')
 
 // Save state of checkbox based on current theme chosen
 if (savedTheme) {
@@ -11,6 +12,7 @@ if (savedTheme) {
 
 themeToggle.addEventListener('change', () => {
 	setTheme(themeToggle.checked ? 'dark' : 'light')
+	// themeText.innerText = themeToggle.checked ? 'Light Mode' : 'Dark Mode'
 })
 
 function setTheme(theme) {

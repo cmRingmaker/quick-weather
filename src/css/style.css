@@ -64,42 +64,7 @@ header {
 	background-color: var(--COLOR_PRIMARY);
 }
 
-/* button {
-	width: 100px;
-	background-color: white;
-	padding: 4px 0;
-	align-self: flex-end;
-	margin: 10px 20px 0 0;
-}
-
-#theme-toggle {
-	align-self: flex-end;
-	display: none;
-}
-
 label[for='theme-toggle'] {
-	align-self: flex-end;
-	width: 70px;
-	height: 60px;
-	padding: 8px 0;
-	background-color: red;
-	text-align: center;
-	border-bottom-left-radius: 12px;
-	align-items: center;
-}
-
-.sun,
-.moon {
-	display: none;
-} */
-
-svg {
-	/* height: 36px;
-	width: 36px;
-	fill: white; */
-}
-
-/* #theme-switcher {
 	background-color: var(--THEME_SWITCHER);
 	width: 90px;
 	padding: 4px 0;
@@ -114,7 +79,7 @@ svg {
 		width: 34px;
 		height: 34px;
 		stroke-width: 1.5;
-		stroke: var(--THEME_BUTTON_COLOR);
+		stroke: white;
 		fill: none;
 		stroke-linecap: round;
 		stroke-linejoin: round;
@@ -132,7 +97,7 @@ svg {
 		left: 0;
 		transform: translateX(8px) translateY(0);
 	}
-} */
+}
 
 /* .theme-icon {
 	stroke-width: 1.5;

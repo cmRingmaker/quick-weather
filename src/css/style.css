@@ -21,7 +21,7 @@
 	--COLOR_SECONDARY: hsl(303, 71%, 73%);
 
 	/* Text */
-	--FONT_COLOR: light-dark(hsl(0, 6%, 10%), hsl(30, 100%, 98%));
+	--FONT_COLOR: light-dark(var(--bg_dark), var(--bg_light));
 
 	&:has(#theme-toggle:not(:checked):not(:indeterminate)) {
 		color-scheme: light;
@@ -41,10 +41,11 @@
 
 body {
 	font-size: 1.8rem;
+	transition: 250ms ease;
 	background-color: var(--COLOR_BG);
 	color: var(--FONT_COLOR);
-	height: 100vh;
-	display: flex;
+	/* height: 100vh; */
+	/* display: flex; */
 	flex-direction: column;
 	/* align-items: center; */
 }
@@ -64,48 +65,53 @@ header {
 	background-color: var(--COLOR_PRIMARY);
 }
 
-label[for='theme-toggle'] {
-	background-color: var(--THEME_SWITCHER);
-	width: 90px;
-	padding: 4px 0;
-	border-radius: 24px;
+#theme {
 	display: flex;
+	justify-content: flex-end;
 	align-items: center;
-	justify-content: center;
-	gap: 6px;
-	cursor: pointer;
+	padding: 10px 12px 0 0;
+	gap: 10px;
+	/* transition: 0.3s ease-in-out; */
+
+	input {
+		display: none;
+	}
+
+	span {
+		user-select: none;
+		opacity: 0;
+		transform: translateX(0px);
+		transition: 250ms ease;
+	}
+
+	span:has(~ label:hover) {
+		color: var(--FONT_COLOR);
+		opacity: 100;
+		transform: translateX(-20px);
+	}
+
+	label[for='theme-toggle'] {
+		background-color: var(--THEME_SWITCHER);
+		display: flex;
+		cursor: pointer;
+	}
 
 	svg {
-		width: 34px;
-		height: 34px;
-		stroke-width: 1.5;
-		stroke: white;
-		fill: none;
-		stroke-linecap: round;
-		stroke-linejoin: round;
-		z-index: 1;
-	}
+		transition: 250ms ease;
+		opacity: 0.9;
 
-	&::before {
-		content: '';
-		position: absolute;
-		width: 36px;
-		height: 36px;
-		background-color: rgb(255, 123, 0);
-		border-radius: 50%;
-		z-index: 0;
-		left: 0;
-		transform: translateX(8px) translateY(0);
+		.toggle-stroke {
+			stroke: var(--FONT_COLOR);
+			stroke-width: 4;
+			fill: none;
+		}
+
+		.toggle-circle {
+			transition: 0.4s ease;
+			fill: var(--FONT_COLOR);
+		}
 	}
 }
-
-/* .theme-icon {
-	stroke-width: 1.5;
-	stroke: var(--THEME_BUTTON_COLOR);
-	fill: none;
-	stroke-linecap: round;
-	stroke-linejoin: round;
-} */
 
 /* ==================================================================
     - - - - - - - - - - [ %CONTENT ]

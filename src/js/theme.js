@@ -1,6 +1,8 @@
 const themeToggle = document.getElementById('theme-toggle')
 const savedTheme = localStorage.getItem('theme')
 const themeText = document.getElementById('theme-text')
+const leftCircle = document.querySelector('.toggle-unchecked')
+const rightCircle = document.querySelector('.toggle-checked')
 
 // Save state of checkbox based on current theme chosen
 if (savedTheme) {
@@ -11,13 +13,26 @@ if (savedTheme) {
 }
 
 themeToggle.addEventListener('change', () => {
-	setTheme(themeToggle.checked ? 'dark' : 'light')
-	// themeText.innerText = themeToggle.checked ? 'Light Mode' : 'Dark Mode'
+	setTheme(themeToggle.checked ? 'Dark' : 'Light')
+	// themeToggle.checked
+	// 	? leftCircle.setAttribute('cx', 0)
+	// 	: leftCircle.setAttribute('cx', -10)
+
+	if (themeToggle.checked) {
+		leftCircle.setAttribute('cx', 8)
+		rightCircle.setAttribute('cx', 70)
+	} else {
+		leftCircle.setAttribute('cx', -22)
+		rightCircle.setAttribute('cx', 40)
+		// 48
+	}
 })
 
 function setTheme(theme) {
-	themeToggle.checked = theme === 'dark'
+	themeToggle.checked = theme === 'Dark'
 	localStorage.setItem('theme', theme)
+	// Set theme-text span to display opposite theme mode (that you will be changing to)
+	themeText.textContent = `${theme === 'Dark' ? 'Light' : 'Dark'} Mode`
 }
 
 // Only runs on users first page load!
@@ -34,5 +49,5 @@ if (!savedTheme) {
 	// Get the background color of the body and set
 	const bgColor = window.getComputedStyle(document.body).backgroundColor
 	const isDark = getLightness(bgColor) < 0.5
-	setTheme(isDark ? 'dark' : 'light')
+	setTheme(isDark ? 'Dark' : 'Light')
 }

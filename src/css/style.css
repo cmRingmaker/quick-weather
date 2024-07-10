@@ -71,7 +71,6 @@ header {
 	align-items: center;
 	padding: 10px 12px 0 0;
 	gap: 10px;
-	/* transition: 0.3s ease-in-out; */
 
 	input {
 		display: none;
@@ -91,15 +90,11 @@ header {
 	}
 
 	label[for='theme-toggle'] {
-		background-color: var(--THEME_SWITCHER);
 		display: flex;
 		cursor: pointer;
 	}
 
 	svg {
-		transition: 250ms ease;
-		opacity: 0.9;
-
 		.toggle-stroke {
 			stroke: var(--FONT_COLOR);
 			stroke-width: 4;

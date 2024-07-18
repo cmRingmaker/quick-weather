@@ -1,11 +1,11 @@
 export class Weather {
-	constructor() {
-		this.weatherKey = '6736d10c44a04f25826202900241206'
-	}
+	// Since this is a free key and a small personal project hosted on github
+	// I don't care that I can't actually hide it lol (never do this)
+	static weatherKey = '6736d10c44a04f25826202900241206'
 
 	async getWeather(location) {
 		const response = await fetch(
-			`https://api.weatherapi.com/v1/forecast.json?key=${this.weatherKey}&q=${location}`,
+			`https://api.weatherapi.com/v1/forecast.json?key=${Weather.weatherKey}&q=${location}`,
 			{ mode: 'cors' }
 		)
 		const data = await response.json()

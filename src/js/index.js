@@ -2,8 +2,10 @@
 // IMPORT
 import '../css/style.css'
 import '../css/reset.css'
-import { getWeather } from './weather.js'
+import { Weather } from './weather.js'
 import THEME from './theme.js'
+
+const weather = new Weather()
 
 // -------------------------
 // DOM ELEMENTS
@@ -13,7 +15,7 @@ const weatherBtn = document.getElementById('get-weather')
 // EVENT LISTENERS
 
 weatherBtn.addEventListener('click', () => {
-	getWeather('Detroit')
+	weather.getWeather('Detroit')
 })
 
 /* ==================================================================

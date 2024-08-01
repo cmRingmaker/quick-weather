@@ -5,7 +5,7 @@ export class Weather {
 
 	async getWeather(location) {
 		const response = await fetch(
-			`https://api.weatherapi.com/v1/forecast.json?key=${Weather.weatherKey}&q=${location}`,
+			`https://api.weatherapi.com/v1/forecast.json?key=${Weather.weatherKey}&q=${location}&days=7`,
 			{ mode: 'cors' }
 		)
 		const data = await response.json()
@@ -21,6 +21,8 @@ export class Weather {
 			feelsLike: data.current.feelslike_f,
 			maxtemp: data.forecast.forecastday[0].day.maxtemp_f,
 			mintemp: data.forecast.forecastday[0].day.mintemp_f,
+			forecast: data.forecast.forecastday,
+			lastUpdated: data.current.last_updated,
 		}
 	}
 

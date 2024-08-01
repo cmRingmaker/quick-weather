@@ -10,6 +10,7 @@ const weather = new Weather()
 // -------------------------
 // DOM ELEMENTS
 const weatherBtn = document.getElementById('get-weather')
+const todayCard = document.getElementById('hero')
 
 // -------------------------
 // EVENT LISTENERS

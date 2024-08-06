@@ -21,8 +21,16 @@ export class Weather {
 			feelsLike: data.current.feelslike_f,
 			maxtemp: data.forecast.forecastday[0].day.maxtemp_f,
 			mintemp: data.forecast.forecastday[0].day.mintemp_f,
-			forecast: data.forecast.forecastday,
-			lastUpdated: data.current.last_updated,
+
+			// Tomorrow
+			oneDays: data.forecast.forecastday[1].day.avgtemp_f,
+			oneCond: data.forecast.forecastday[1].day.condition.text,
+			oneCondIcon: data.forecast.forecastday[1].day.condition.icon,
+
+			// Two Days Later
+			twoDays: data.forecast.forecastday[2].day.avgtemp_f,
+			twoCond: data.forecast.forecastday[2].day.condition.text,
+			twoCondIcon: data.forecast.forecastday[2].day.condition.icon,
 		}
 	}
 

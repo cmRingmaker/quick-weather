@@ -117,9 +117,18 @@ main {
 	justify-items: center;
 	gap: 100px;
 
+	button {
+		width: min(90vw, 400px);
+		height: 40px;
+		border-radius: 10px;
+		background-color: var(--FONT_COLOR);
+		color: var(--COLOR_BG);
+		cursor: pointer;
+	}
+
 	#hero {
 		background-color: gray;
-		width: 400px;
+		width: min(90vw, 400px);
 		height: 500px;
 	}
 

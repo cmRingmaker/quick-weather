@@ -9,13 +9,14 @@ const weather = new Weather()
 
 // -------------------------
 // DOM ELEMENTS
-const weatherBtn = document.getElementById('get-weather')
+const formSubmit = document.getElementById('form-submit')
 const todayCard = document.getElementById('hero')
 
 // -------------------------
 // EVENT LISTENERS
 
-weatherBtn.addEventListener('click', () => {
+formSubmit.addEventListener('click', (e) => {
+	e.preventDefault()
 	weather.getWeather('Detroit')
 })
 

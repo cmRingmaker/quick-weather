@@ -1,20 +1,43 @@
 export class Weather {
 	// Since this is a free key and a small personal project hosted on github
 	// I don't care that I can't actually hide it lol (never do this)
+	// Carry on, bots and nosey hackers
 	static weatherKey = '6736d10c44a04f25826202900241206'
 
 	async getWeather(location) {
-		const response = await fetch(
-			`https://api.weatherapi.com/v1/forecast.json?key=${Weather.weatherKey}&q=${location}&days=7`,
-			{ mode: 'cors' }
-		)
-		const data = await response.json()
-		console.log(this.processData(data))
-		return this.processData(data)
+		try {
+			const response = await fetch(
+				`https://api.weatherapi.com/v1/forecast.json?key=${Weather.weatherKey}&q=${location}&days=7`,
+				{ mode: 'cors' }
+			)
+
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`)
+			}
+
+			const data = await response.json()
+
+			if (data.error) {
+				throw new Error(data.error.message || 'Unknown API error')
+			}
+
+			const processedData = this.processData(data)
+			console.log(processedData)
+			return processedData
+		} catch (error) {
+			console.error(`An error occurred while fetching weather data: ${error}`)
+			return {
+				error: true,
+				message:
+					error.message ||
+					'Unable to fetch weather data. Please check the location and try again.',
+			}
+		}
 	}
 
 	processData(data) {
 		return {
+			location: data.location,
 			icon: data.current.condition.icon,
 			current: data.current.condition.text,
 			temp: data.current.temp_f,

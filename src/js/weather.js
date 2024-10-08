@@ -21,17 +21,10 @@ export class Weather {
 				throw new Error(data.error.message || 'Unknown API error')
 			}
 
-			const processedData = this.processData(data)
-			console.log(processedData)
-			return processedData
+			return this.processData(data)
 		} catch (error) {
 			console.error(`An error occurred while fetching weather data: ${error}`)
-			return {
-				error: true,
-				message:
-					error.message ||
-					'Unable to fetch weather data. Please check the location and try again.',
-			}
+			throw error
 		}
 	}
 

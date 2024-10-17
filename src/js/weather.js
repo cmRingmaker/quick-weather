@@ -30,23 +30,45 @@ export class Weather {
 
 	processData(data) {
 		return {
-			location: data.location,
-			icon: data.current.condition.icon,
-			current: data.current.condition.text,
-			temp: data.current.temp_f,
-			feelsLike: data.current.feelslike_f,
-			maxtemp: data.forecast.forecastday[0].day.maxtemp_f,
-			mintemp: data.forecast.forecastday[0].day.mintemp_f,
+			location: {
+				city: data.location.name,
+				region: data.location.region,
+				country: data.location.country,
+				time: data.location.localtime,
+
+				// Coordinates
+				lat: data.location.lat,
+				lon: data.location.long,
+			},
+
+			current: {
+				temp: data.current.temp_f,
+				feelslike_f: data.current.feelslike_f,
+
+				// Icon & Text
+				icon: data.current.condition.icon,
+				text: data.current.condition.text,
+
+				forecast: {
+					mintemp: data.forecast.forecastDay[0].day.mintemp_f,
+					maxtemp: data.forecast.forecastDay[0].day.maxtemp_f,
+					condition: data.forecast.forecastDay[0].day.condition.text,
+				},
+			},
 
 			// Tomorrow
-			oneDays: data.forecast.forecastday[1].day.avgtemp_f,
-			oneCond: data.forecast.forecastday[1].day.condition.text,
-			oneCondIcon: data.forecast.forecastday[1].day.condition.icon,
+			oneday: {
+				avgtemp: data.forecast.forecastday[1].day.avgtemp_f,
+				icon: data.forecast.forecastday[1].day.condition.icon,
+				text: data.forecast.forecastday[1].day.condition.text,
+			},
 
-			// Two Days Later
-			twoDays: data.forecast.forecastday[2].day.avgtemp_f,
-			twoCond: data.forecast.forecastday[2].day.condition.text,
-			twoCondIcon: data.forecast.forecastday[2].day.condition.icon,
+			// Two days from now
+			twodays: {
+				avgtemp: data.forecast.forecastday[1].day.avgtemp_f,
+				icon: data.forecast.forecastday[1].day.condition.icon,
+				text: data.forecast.forecastday[1].day.condition.text,
+			},
 		}
 	}
 

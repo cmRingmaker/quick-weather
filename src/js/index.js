@@ -39,17 +39,18 @@ formSubmit.addEventListener('click', async (e) => {
     * description
    ================================================================== */
 
-function updateUI(weatherData) {
-	if (weatherData.error) {
-		todayCard.textContent = weatherData.message
+function updateUI(data) {
+	if (data.error) {
+		todayCard.textContent = data.message
 	} else {
 		todayCard.innerHTML = `
-      <h2>${weatherData.location.name}, ${abbrState(
-			weatherData.location.region
-		)} ${weatherData.location.country}</h2>
-      <p>Current: ${weatherData.current} ${weatherData.temp}°F</p>
-      <p>Feels like: ${weatherData.feelsLike}°F</p>
-      <img src="${weatherData.icon}" alt="${weatherData.current}">
+      <h2>${data.location.name}, ${abbrState(data.location.region)} ${
+			data.location.country
+		}</h2>
+
+      <p>Current: ${data.current} ${data.temp}°F</p>
+      <p>Feels like: ${data.feelsLike}°F</p>
+      <img src="${data.icon}" alt="${data.current}">
     `
 	}
 }

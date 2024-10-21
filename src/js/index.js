@@ -48,7 +48,7 @@ function updateUI(data) {
       <h1>${data.location.city}, ${abbrState(data.location.region)}</h1>
       <h2>${data.location.country}</h2>
       <span class='time'>${formatDate(data.location.time)}</span>
-      <h3>${data.current.temp} °F</h3>
+      <h3>${updateTemperature(data.current.temp)} °F</h3>
 
       <div class='current'>
         <img class='c1' src='${data.current.icon}' alt='${data.current.text}'>
@@ -61,7 +61,33 @@ function updateUI(data) {
         <span class='f2'>Highest: ${data.current.forecast.maxtemp} °F</span>
       </div>
     `
+
+		const h3Element = todayCard.querySelector('h3')
+		h3Element.addEventListener('click', () => updateTemperature(h3Element))
 	}
+}
+
+// function updateTemperature(element) {
+// 	let [temp, unit] = element.textContent.split(' ')
+// 	temp = parseFloat(temp)
+
+// 	if (unit === '°F') {
+// 		temp = Weather.fahrenheitToCelsius(temp)
+// 		unit = '°C'
+// 	} else {
+// 		temp = Weather.celsiusToFahrenheit(temp)
+// 		unit = '°F'
+// 	}
+
+// 	temp = temp.toFixed(1)
+
+// 	element.textContent = `${temp} ${unit}`
+// }
+
+// TODO: simplify the above function further
+function updateTemperature(element) {
+	console.log(element)
+	return element
 }
 
 function abbrState(stateName) {

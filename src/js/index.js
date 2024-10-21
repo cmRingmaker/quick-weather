@@ -25,6 +25,7 @@ formSubmit.addEventListener('click', async (e) => {
 		const weatherData = await weather.getWeather(
 			`${formInput.value.toLowerCase()}`
 		)
+		console.log(weatherData)
 		// TODO fix this console log
 		console.log('Weather data received:', weatherData)
 		updateUI(weatherData)
@@ -44,13 +45,21 @@ function updateUI(data) {
 		todayCard.textContent = data.message
 	} else {
 		todayCard.innerHTML = `
-      <h2>${data.location.name}, ${abbrState(data.location.region)} ${
-			data.location.country
-		}</h2>
+      <h1>${data.location.city}, ${abbrState(data.location.region)}</h1>
+      <h2>${data.location.country}</h2>
+      <span class='time'>${formatDate(data.location.time)}</span>
+      <h3>${data.current.temp} °F</h3>
 
-      <p>Current: ${data.current} ${data.temp}°F</p>
-      <p>Feels like: ${data.feelsLike}°F</p>
-      <img src="${data.icon}" alt="${data.current}">
+      <div class='current'>
+        <img class='c1' src='${data.current.icon}' alt='${data.current.text}'>
+        <span class='c2'>${data.current.text}</span>
+      </div>
+
+      <div class='forecast'>
+        <span class='f1'>Lowest: ${data.current.forecast.mintemp} °F</span>
+        <span class='noclick'>|</span>
+        <span class='f2'>Highest: ${data.current.forecast.maxtemp} °F</span>
+      </div>
     `
 	}
 }
@@ -110,4 +119,39 @@ function abbrState(stateName) {
 	}
 
 	return stateList[stateName] || stateName
+}
+
+function formatDate(dateString) {
+	const [dateStr, timeStr] = dateString.split(' ')
+	const [year, month, day] = dateStr.split('-')
+
+	const months = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December',
+	]
+
+	const getSuffix = (day) => {
+		if (day >= 11 && day <= 13) return 'th' // Exception for 11-13
+		const lastDigit = day % 10
+		// 0th - 9th
+		return ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'][
+			lastDigit
+		]
+	}
+
+	const formatted = `${months[(month, 10) - 1]} ${day}${getSuffix(
+		day
+	)}, ${year}`
+
+	return `${formatted} ${timeStr}`
 }

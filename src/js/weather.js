@@ -7,8 +7,7 @@ export class Weather {
 	async getWeather(location) {
 		try {
 			const response = await fetch(
-				`https://api.weatherapi.com/v1/forecast.json?key=${Weather.weatherKey}&q=${location}&days=7`,
-				{ mode: 'cors' }
+				`https://api.weatherapi.com/v1/forecast.json?key=${Weather.weatherKey}&q=${location}&days=7`
 			)
 
 			if (!response.ok) {
@@ -50,9 +49,9 @@ export class Weather {
 				text: data.current.condition.text,
 
 				forecast: {
-					mintemp: data.forecast.forecastDay[0].day.mintemp_f,
-					maxtemp: data.forecast.forecastDay[0].day.maxtemp_f,
-					condition: data.forecast.forecastDay[0].day.condition.text,
+					mintemp: data.forecast.forecastday[0].day.mintemp_f,
+					maxtemp: data.forecast.forecastday[0].day.maxtemp_f,
+					condition: data.forecast.forecastday[0].day.condition.text,
 				},
 			},
 

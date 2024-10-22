@@ -172,6 +172,9 @@ main {
 			font-size: 5rem;
 			align-self: center;
 			margin-top: 60px;
+			cursor: pointer;
+			color: hsl(349, 60%, 85%);
+			text-shadow: 1px 1px 1px hsla(0, 0%, 0%, 0.5);
 		}
 
 		.time {

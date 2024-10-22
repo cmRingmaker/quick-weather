@@ -48,7 +48,7 @@ function updateUI(data) {
       <h1>${data.location.city}, ${abbrState(data.location.region)}</h1>
       <h2>${data.location.country}</h2>
       <span class='time'>${formatDate(data.location.time)}</span>
-      <h3>${updateTemperature(data.current.temp)} °F</h3>
+      <h3>${data.current.temp} °F</h3>
 
       <div class='current'>
         <img class='c1' src='${data.current.icon}' alt='${data.current.text}'>
@@ -63,31 +63,38 @@ function updateUI(data) {
     `
 
 		const h3Element = todayCard.querySelector('h3')
-		h3Element.addEventListener('click', () => updateTemperature(h3Element))
+		const f1 = document.querySelector('.f1')
+		const f2 = document.querySelector('.f2')
+		h3Element.addEventListener('click', () =>
+			updateTemperature(h3Element, f1, f2)
+		)
+		console.log(f1.textContent)
 	}
 }
 
-// function updateTemperature(element) {
-// 	let [temp, unit] = element.textContent.split(' ')
-// 	temp = parseFloat(temp)
+function updateTemperature(h3, f1, f2) {
+	let [h3Temp, h3Unit] = h3.textContent.split(' ')
+	let [, lowTemp, lowUnit] = f1.textContent.split(' ')
+	let [, highTemp, highUnit] = f2.textContent.split(' ')
 
-// 	if (unit === '°F') {
-// 		temp = Weather.fahrenheitToCelsius(temp)
-// 		unit = '°C'
-// 	} else {
-// 		temp = Weather.celsiusToFahrenheit(temp)
-// 		unit = '°F'
-// 	}
+	if (h3Unit === '°F') {
+		h3Temp = Math.round(Weather.fahrenheitToCelsius(+h3Temp))
+		lowTemp = Math.round(Weather.fahrenheitToCelsius(+lowTemp))
+		highTemp = Math.round(Weather.fahrenheitToCelsius(+highTemp))
+		h3Unit = '°C'
+	} else {
+		h3Temp = Math.round(Weather.celsiusToFahrenheit(+h3Temp))
+		lowTemp = Math.round(Weather.celsiusToFahrenheit(+lowTemp))
+		highTemp = Math.round(Weather.celsiusToFahrenheit(+highTemp))
+		h3Unit = '°F'
+	}
 
-// 	temp = temp.toFixed(1)
+	// Set all units to same value
+	h3Unit = lowUnit = highUnit = h3Unit
 
-// 	element.textContent = `${temp} ${unit}`
-// }
-
-// TODO: simplify the above function further
-function updateTemperature(element) {
-	console.log(element)
-	return element
+	h3.textContent = `${h3Temp} ${h3Unit}`
+	f1.textContent = `Lowest: ${lowTemp} ${lowUnit}`
+	f2.textContent = `Highest: ${highTemp} ${highUnit}`
 }
 
 function abbrState(stateName) {

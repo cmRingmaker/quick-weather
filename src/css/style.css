@@ -19,6 +19,7 @@
 	--COLOR_BG: light-dark(var(--bg_light), var(--bg_dark));
 	--COLOR_PRIMARY: hsl(220, 90%, 15%);
 	--COLOR_SECONDARY: hsl(303, 71%, 73%);
+	--COLOR_OFFBLUE: hsl(208, 44%, 55%);
 
 	/* Text */
 	--FONT_COLOR: light-dark(var(--bg_dark), var(--bg_light));
@@ -127,7 +128,7 @@ main {
 		/* gap: 10px; */
 
 		input[type='text'] {
-			color: red;
+			color: hsl(207, 79%, 68%);
 			flex-grow: 2;
 			padding-left: 20px;
 			border-top-left-radius: 10px;
@@ -175,11 +176,13 @@ main {
 			cursor: pointer;
 			color: hsl(349, 60%, 85%);
 			text-shadow: 1px 1px 1px hsla(0, 0%, 0%, 0.5);
+			user-select: none;
 		}
 
 		.time {
 			display: block;
 			margin: 10px 0;
+			border-bottom: 1px solid var(--COLOR_OFFBLUE);
 		}
 
 		.current,
@@ -210,11 +213,36 @@ main {
 		gap: 30px;
 		justify-content: space-around;
 		flex-wrap: wrap;
+
+		.card {
+			display: flex;
+			flex-direction: column;
+			border-radius: 10px;
+			justify-content: center;
+			align-items: center;
+
+			span:first-child {
+				background-color: var(--COLOR_OFFBLUE);
+				width: 100%;
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+				text-align: center;
+			}
+		}
 	}
 
 	.card {
 		background-color: hsl(207, 79%, 68%);
 		width: 200px;
+	}
+
+	@media screen and (max-width: 477px) {
+		gap: 50px;
+
+		> #weekly > .card {
+			width: min(90vw, 400px);
+			align-items: center;
+		}
 	}
 }
 

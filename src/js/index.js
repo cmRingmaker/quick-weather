@@ -12,6 +12,8 @@ const weather = new Weather()
 const formSubmit = document.getElementById('form-submit')
 const formInput = document.getElementById('form-input')
 const todayCard = document.getElementById('hero')
+const tomorrowCard = document.getElementById('tomorrow-card')
+const twoDaysCard = document.getElementById('twoDays-card')
 
 // -------------------------
 // EVENT LISTENERS
@@ -21,13 +23,11 @@ formSubmit.addEventListener('click', async (e) => {
 	if (formInput.value === '') return
 
 	try {
-		console.log(`Fetching weather for: ${formInput.value}`)
+		// console.log(`Fetching weather for: ${formInput.value}`)
 		const weatherData = await weather.getWeather(
 			`${formInput.value.toLowerCase()}`
 		)
-		console.log(weatherData)
-		// TODO fix this console log
-		console.log('Weather data received:', weatherData)
+		// console.log('Weather data received:', weatherData)
 		updateUI(weatherData)
 	} catch (error) {
 		console.error(`Error fetching weather: ${error}`)
@@ -62,38 +62,64 @@ function updateUI(data) {
       </div>
     `
 
+		tomorrowCard.innerHTML = `
+      <span>Tomorrow</span>
+      <div class='current-card'>
+        <img src='${data.oneday.icon}' alt='${data.oneday.text}'>
+        <span class='one-span'>${data.oneday.avgtemp} °F</span>
+      </div>
+    `
+
+		twoDaysCard.innerHTML = `
+      <span>In Two Days..</span>
+      <div class='current-card'>
+        <img src='${data.twodays.icon}' alt='${data.twodays.text}'>
+        <span class='two-span'>${data.twodays.avgtemp} °F</span>
+      </div>
+    `
+
 		const h3Element = todayCard.querySelector('h3')
 		const f1 = document.querySelector('.f1')
 		const f2 = document.querySelector('.f2')
+		const oneSpan = document.querySelector('.one-span')
+		const twoSpan = document.querySelector('.two-span')
 		h3Element.addEventListener('click', () =>
-			updateTemperature(h3Element, f1, f2)
+			updateTemperature(h3Element, f1, f2, oneSpan, twoSpan)
 		)
 	}
 }
 
-function updateTemperature(h3, f1, f2) {
+function updateTemperature(h3, f1, f2, oneSpan, twoSpan) {
 	let [h3Temp, h3Unit] = h3.textContent.split(' ')
 	let [, lowTemp, lowUnit] = f1.textContent.split(' ')
 	let [, highTemp, highUnit] = f2.textContent.split(' ')
+	let [tomTemp, tomUnit] = oneSpan.textContent.split(' ')
+	let [twoTemp, twoUnit] = twoSpan.textContent.split(' ')
 
 	if (h3Unit === '°F') {
 		h3Temp = Math.round(Weather.fahrenheitToCelsius(+h3Temp))
 		lowTemp = Math.round(Weather.fahrenheitToCelsius(+lowTemp))
 		highTemp = Math.round(Weather.fahrenheitToCelsius(+highTemp))
+		tomTemp = Math.round(Weather.fahrenheitToCelsius(+tomTemp))
+		twoTemp = Math.round(Weather.fahrenheitToCelsius(+twoTemp))
 		h3Unit = '°C'
 	} else {
 		h3Temp = Math.round(Weather.celsiusToFahrenheit(+h3Temp))
 		lowTemp = Math.round(Weather.celsiusToFahrenheit(+lowTemp))
 		highTemp = Math.round(Weather.celsiusToFahrenheit(+highTemp))
+		tomTemp = Math.round(Weather.celsiusToFahrenheit(+tomTemp))
+		twoTemp = Math.round(Weather.celsiusToFahrenheit(+twoTemp))
 		h3Unit = '°F'
 	}
 
 	// Set all units to same value
-	h3Unit = lowUnit = highUnit = h3Unit
+	h3Unit = lowUnit = highUnit = tomUnit = twoUnit = h3Unit
 
 	h3.textContent = `${h3Temp} ${h3Unit}`
 	f1.textContent = `Lowest: ${lowTemp} ${lowUnit}`
 	f2.textContent = `Highest: ${highTemp} ${highUnit}`
+	oneSpan.textContent = `${tomTemp} ${tomUnit}`
+	twoSpan.textContent = `${twoTemp} ${twoUnit}`
 }
 
 function abbrState(stateName) {
@@ -189,8 +215,6 @@ function formatDate(dateString) {
 	const period = hour >= 12 ? 'PM' : 'AM'
 	const twelveHour = hour % 12 || 12 // converts 0 to 12
 	const formattedTime = `${twelveHour}:${minute} ${period}`
-
-	console.log(hour, minute)
 
 	return `${formattedDate} ${formattedTime}`
 }

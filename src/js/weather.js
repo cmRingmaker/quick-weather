@@ -64,9 +64,9 @@ export class Weather {
 
 			// Two days from now
 			twodays: {
-				avgtemp: data.forecast.forecastday[1].day.avgtemp_f,
-				icon: data.forecast.forecastday[1].day.condition.icon,
-				text: data.forecast.forecastday[1].day.condition.text,
+				avgtemp: data.forecast.forecastday[2].day.avgtemp_f,
+				icon: data.forecast.forecastday[2].day.condition.icon,
+				text: data.forecast.forecastday[2].day.condition.text,
 			},
 		}
 	}

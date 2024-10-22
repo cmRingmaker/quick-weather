@@ -68,7 +68,6 @@ function updateUI(data) {
 		h3Element.addEventListener('click', () =>
 			updateTemperature(h3Element, f1, f2)
 		)
-		console.log(f1.textContent)
 	}
 }
 
@@ -157,6 +156,7 @@ function abbrState(stateName) {
 function formatDate(dateString) {
 	const [dateStr, timeStr] = dateString.split(' ')
 	const [year, month, day] = dateStr.split('-')
+	const [hour, minute] = timeStr.split(':')
 
 	const months = [
 		'January',
@@ -182,9 +182,15 @@ function formatDate(dateString) {
 		]
 	}
 
-	const formatted = `${months[(month, 10) - 1]} ${day}${getSuffix(
+	const formattedDate = `${months[(month, 10) - 1]} ${day}${getSuffix(
 		day
 	)}, ${year}`
 
-	return `${formatted} ${timeStr}`
+	const period = hour >= 12 ? 'PM' : 'AM'
+	const twelveHour = hour % 12 || 12 // converts 0 to 12
+	const formattedTime = `${twelveHour}:${minute} ${period}`
+
+	console.log(hour, minute)
+
+	return `${formattedDate} ${formattedTime}`
 }

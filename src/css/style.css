@@ -127,7 +127,7 @@ main {
 		display: flex;
 		/* gap: 10px; */
 
-		& input[type='text'] {
+		#form-input {
 			color: hsl(207, 79%, 68%);
 			flex-grow: 2;
 			padding-left: 20px;
@@ -141,7 +141,7 @@ main {
 			}
 		}
 
-		input[type='submit'] {
+		#form-submit {
 			width: 60px;
 			height: 40px;
 			border-top-right-radius: 10px;

@@ -1,5 +1,7 @@
 https://cmringmaker.github.io/quick-weather/
+
 https://cmringmaker.github.io/quick-weather/
+
 https://cmringmaker.github.io/quick-weather/
 
 Quick Weather is a RESTful app that utilizes the Weather API from https://www.weatherapi.com/

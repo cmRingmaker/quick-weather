@@ -71,7 +71,7 @@ header {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	padding: 10px 12px 0 0;
+	padding: 10px 12px 20px 0;
 	gap: 10px;
 
 	input {
@@ -111,10 +111,9 @@ header {
 }
 
 /* ==================================================================
-    - - - - - - - - - - [ %CONTENT ]
+    - - - - - - - - - - [ MAIN ]
    ==================================================================
     - - [ main, section, div, article, aside, form ]
-    * replace %CONTENT with one of the above when pasting this
    ================================================================== */
 
 main {

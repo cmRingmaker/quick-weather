@@ -9,7 +9,9 @@ Simply input your city, or your city and state(region/country) to narrow it down
 
 Click on the current weather to convert from fahrenheit to celsius, and vice versa.
 
+---
+
 Tools used:
-[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]
+*[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]*
 
 This project utilized API calls and asynchronous code.

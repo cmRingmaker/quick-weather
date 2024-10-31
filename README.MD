@@ -11,3 +11,4 @@ Click on the current weather to convert from fahrenheit to celsius, and vice ver
 
 Tools used:
 [HTML | CSS + Grid + Flexbox | JavaScript | Webpack]
+This project utilized API calls and asynchronous code.
